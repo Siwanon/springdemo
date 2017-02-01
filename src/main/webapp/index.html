@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en"><head>
+	<meta charset="UTF-8">
+	<title>Spring MVC</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div>Hello Spring</div>
+	<div id="firstname"></div>
+	<div id="lastname"></div>
+	<div id="email"></div>
+	
+	<script>
+	$( document ).ready(function() {
+		$.ajax({
+			type: 'GET',
+			url: 'api/user/findAll',
+			dataType: 'json',
+			success: function(res) {
+				for (user in res) {
+					var	firstname = res[user].firstname,
+						lastname = res[user].lastname,
+						email = res[user].email
+					$('#firstname').append(firstname);
+					$('#lastname').append(lastname);
+					$('#email').append(email);
+				}
+			}
+		});
+	});
+	</script>
+</body>
+</html>
