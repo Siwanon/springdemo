@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+    db:
+      image: mongo:3.2
+      container_name: mongoserver
+      volumes:
+             -  c:/data/db:/data/db 
+
+    web:
+      image: src/main/docker/
+      container_name: springweb
+      depends_on:
+          - db
+      links:
+          - db:mongo
+      ports:
+          - 8080:8080
